@@ -1,3 +1,36 @@
 body {
+  background-color: grey;
+}
+
+h1 {
+  font-family: 'New Rocker', cursive;
+  font-size: 60px;
+  text-align: center;
+  color: black;
+  }
+.flex-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: pink;
+}
+.card-placement {
+  width: 120px;
+  height: 170px;
+  border: 3px solid black;
+  display: flex;
+  padding: auto;
+  margin: 10px auto;
+  background-color: darkgrey;
+}
+
+.flex-board {
+  height: 100%;
+  width: 750px;
+  padding: auto;
+  margin: 5px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   background-color: purple;
 }
