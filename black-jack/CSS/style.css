@@ -1,5 +1,8 @@
 body {
-  background-color: grey;
+  background-image: url("images/wood.jpg");
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
@@ -7,30 +10,47 @@ h1 {
   font-size: 60px;
   text-align: center;
   color: black;
+  letter-spacing: 25px;
   }
+
 .flex-container {
   height: 100%;
-  width: 100%;
+  width: 75%;
   display: flex;
-  background-color: pink;
+  background-image: url("images/tabletop.jpg");
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid;
+  margin: auto;
+
 }
 .card-placement {
   width: 120px;
-  height: 170px;
-  border: 3px solid black;
+  height: 190px;
+  border: 3px solid;
+  border-color: rgba(0, 0, 0, 0.2);
   display: flex;
   padding: auto;
-  margin: 10px auto;
-  background-color: darkgrey;
+  margin: 25px auto;
+  background-image: url("images/goldcard.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
 }
 
 .flex-board {
   height: 100%;
   width: 750px;
   padding: auto;
-  margin: 5px auto;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: purple;
+}
+button {
+  margin: 10px;
+  background-image: url("images/gold.jpg");
+
 }
