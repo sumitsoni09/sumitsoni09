@@ -6,30 +6,39 @@
   //assign each card a value, A=1, 2=2, 3=3,..., J=11, Q=12, K=13
   //to win a game must reach 21
   //prompt for how to play
+  let value = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K',]
+  let suit = ['Clubs', 'Diamonds', 'Spades', 'Hearts']
 class Deck {
   constructor() {
     this.deck=[]
     this.dealt_cards=[]
+
   }
   generateDeck() {
-    let card = (suit, value) => {
-      this.name = value + ' of ' + suit
-      this.suit = suit
-      this.value = value
+    // let card = (suit, value) => {
+    //   this.name = value + ' of ' + suit
+    //   this.suit = suit
+    //   this.value = value
+    //
+    // }
 
-      return {name: this.name, suit: this.suit, value: this.value}
-    }
-    let values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K',]
-    let suits = ['Clubs', 'Diamonds', 'Spades', 'Hearts']
+    for (let s = 0; s < suit.length; s++) {
+      for (let v = 0; v < value.length; v++) {
+        let card = (suit, value) => {
+          this.name = value + ' of ' + suit
+          this.suit = suit
+          this.value = value
+          return {name: this.name, suit: this.suit, value: this.value}
 
-    for (let s = 0; s < suits.length; s++) {
-      for (let v = 0; v < values.length; v++) {
-        this.deck.push(card([s], values[v]))
+        }
+        this.deck.push(card(suit[s], value[v]))
+        console.log(suit[s])
+        console.log(value[v])
       }
     }
   }
   printDeck () {
-    if(this.deck.length == 0) {
+    if(this.deck.length == 52) {
       console.log('the deck has been generated');
     } else {
       for (let c = 0; c < this.deck.length; c++) {
@@ -39,5 +48,6 @@ class Deck {
   }
 }
 deck = new Deck()
+console.log(deck);
 deck.generateDeck()
 deck.printDeck()
