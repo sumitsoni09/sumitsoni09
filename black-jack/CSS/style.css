@@ -145,6 +145,18 @@ font-size: 20px;
   position: absolute;
   font-size: 35px;
 }
+
+.bank {
+  border: 3px solid green;
+  height: 40px;
+  width: 60px;
+}
+
+#bank-box {
+  height: 40px;
+  width: 60px;
+  background-color: lightgreen;
+}
 /* use animation to deal cards through,
 prompt for how to play game,
 */
