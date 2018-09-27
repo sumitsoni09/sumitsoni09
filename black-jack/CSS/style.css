@@ -2,7 +2,7 @@ body {
   background-image: url("images/wood.jpg");
   background-position: auto;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover auto;
 }
 
 h1 {
@@ -20,11 +20,11 @@ h1 {
   background-image: url("images/tabletop.jpg");
   background-position: auto;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover auto;
   border: 2px solid;
   margin: auto;
 }
-.card-placement {
+.card-heart {
   width: 120px;
   height: 190px;
   border: 3px solid;
@@ -32,14 +32,70 @@ h1 {
   display: flex;
   padding: auto;
   margin: 25px auto;
+  background-color: white;
   background-image: url("images/goldcard.png");
   background-size: cover;
   background-position: auto;
   background-repeat: no-repeat;
   background-origin: padding-box;
   border-radius: 12.5px;
+  color: red;
+  font-size: 25px;
 }
-
+.card-spade {
+  width: 120px;
+  height: 190px;
+  border: 3px solid;
+  border-color: black;
+  display: flex;
+  padding: auto;
+  margin: 25px auto;
+  background-color: white;
+  background-image: url("images/goldcard.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  border-radius: 12.5px;
+  color: black;
+  font-size: 25px;
+}
+.card-club {
+  width: 120px;
+  height: 190px;
+  border: 3px solid;
+  border-color: black;
+  display: flex;
+  padding: auto;
+  margin: 25px auto;
+  background-color: white;
+  background-image: url("images/goldcard.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  border-radius: 12.5px;
+  color: black;
+  font-size: 25px;
+}
+.card-diamond {
+  width: 120px;
+  height: 190px;
+  border: 3px solid;
+  border-color: black;
+  display: flex;
+  padding: auto;
+  margin: 25px auto;
+  background-color: white;
+  background-image: url("images/goldcard.png");
+  background-size: cover;
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  border-radius: 12.5px;
+  color: red;
+  font-size: 25px;
+}
 .flex-board {
   height: 100%;
   width: 1100px;
@@ -51,112 +107,34 @@ h1 {
 }
 
 button {
+  font-family: 'New Rocker', cursive;
+  font-size: 20px;
+  padding: 10px;
   margin: 10px;
   background-image: url("images/gold2.jpg");
 }
 
-.card-container {
-    position: absolute;
-    top: 200px;
-    left: 200px;
-    background-color: white;
-}
-
-.card-red {
-  width: 120px;
-  height: 190px;
-  border: 3px solid;
-  border-color: black;
-  border-radius: 12.5px;
-  box-shadow: 2px 2px 1px black;
-  background-image: url("images/gold2.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-  color: darkred;
-}
-
-.card-black {
-  width: 120px;
-  height: 190px;
-  border: 3px solid;
-  border-color: black;
-  border-radius: 12.5px;
-  box-shadow: 2px 2px 1px black;
-  background-image: url("images/gold2.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-  color: black;
-}
-
-.symbol-center {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  left: 14px;
-  top: 40px;
-  size: 20px;
-}
-
-.symbol {
-  font-size: 100px;
-  text-align: center;
-}
-
-.value-container {
-
-  position: absolute;
-  width: 40px;
-}
-
-.container-top {
-  top: 15px;
-  left: 15px;
-}
-
-.container-bottom {
-  bottom: 15px;
-  right: 15px;
-  transform: rotate(180deg);
-}
-
-.value-suit {
-left: 20px;
-position: absolute;
-font-size: 20px;
-}
-
-.num-10{
-  left: 35px;
-  position: absolute;
-  font-size: 20px;
-}
-
-.num-face {
-  left: 25px;
-  position: absolute;
-  font-size: 20px;
-}
-
-.value-number {
-  font-family: 'New Rocker', cursive;
-  left: 0px;
-  position: absolute;
-  font-size: 35px;
-}
-
-.bank {
-  border: 3px solid green;
-  height: 40px;
-  width: 60px;
-}
-
 #bank-box {
   height: 40px;
-  width: 60px;
-  background-color: lightgreen;
+  width: 90px;
+  background-color: gold;
+  border: 3px solid purple;
+  font-family: 'New Rocker', cursive;
+  font-size: 25px;
+  color: green;
+
 }
+
+#bid-box {
+  background-color: purple;
+  font-family: 'New Rocker', cursive;
+  font-size: 25px;
+  width: 90px;
+  color: gold;
+  border: 3px solid green;
+}
+
+
 /* use animation to deal cards through,
 prompt for how to play game,
 */
