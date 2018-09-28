@@ -12,3 +12,5 @@ Cards:
 Need to get 52 cards!
 Array of 1-13 of each suit of hearts, clubs, spades, and diamonds
 Randomize each array with a for loop and math.random? 
+
+had a issue with getting cards printed, there is a bug in the console log number does not match the cards, and bid button does not stay when i need to subtract or add after each button is pressed. 
