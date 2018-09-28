@@ -13,7 +13,7 @@
     <div id="modal">
       <div id ="modal-texbox">
         <a id="close" href="#">Close</a>
-          <p> <h2>Welcome to Blackjack</h2> 
+          <p> <h2>Welcome to Blackjack</h2>
           In order to win the game you must not reach $0 in your account. The way the game is played is by adding your cards together but the value they have, for instance 2 is equal to 2, 3 is equal to 3 and so forth. The only numbers that are different is J, Q, and K they all have a value of 10 and the Ace has a value of 11/1.</p>
         <p> <h1>WARNING!</h1> Please bet at your own risk on how much you spend you may fear the consiquences of losing your own money</p>
 
@@ -26,25 +26,32 @@
 <!-- create card placements -->
   <div class = "flex-board">
 <!-- create cards -->
-    <div class = "card-heart"></div>
-    <div class = "card-diamond"></div>
-    <div class = "card-spade"></div>
-    <div class = "card-club"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+  <div class = "card-placement"></div>
+
 
     </div>
   </div>
+  <div id = "bank-box">
+    <label id= "bank">$100</label>
+  </div>
+  <input ondrop="number" min="1" id="bid-box"/>
+  <button id="bid-btn" onclick="getAccount()">Bid</button> <button id="hit-btn">Hit</button> <button id="stay-btn">Stay</button>
 </div>
 
 
     <!-- create money box -->
 
-    <div id = "bank-box">
-      <label id= "bank"></label>
-  </div>
     <!-- create numerical text box -->
- <input ondrop="number" min="1" id="bid-box"/>
     <!-- create bid button, hit button, stay button -->
-  <button id="bid-btn" onclick="getAccount()">Bid</button> <button id="hit-btn">Hit</button> <button id="stay-btn">Stay</button>
 
 
   </body>

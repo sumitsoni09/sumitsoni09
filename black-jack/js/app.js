@@ -1,4 +1,4 @@
-$( () => {
+ $( () => {
   const $openBtn = $('#openModel');
   const $modal = $('#modal');
   const $closeBtn = $('#close');
@@ -19,8 +19,6 @@ $( () => {
   //assign each card a value, A=1, 2=2, 3=3,..., J=10, Q=10, K=10
   //to win a game must reach 21
   //prompt for how to play
-  let value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-  let suit = ['♦','♣','♥','♠']
   // $(".card-heart").append("\u2665"),
   // $(".card-spade").append("\u2660"),
   // $(".card-club").append("\u2663"),
@@ -30,56 +28,82 @@ $( () => {
 class Deck {
   constructor() {
     this.deck=[]
-    this.dealt_cards=[]
-
-
-  }
-  singlecard() {
-    return this.deck[0]
+    this.dealtCards=[]
   }
   generateDeck() {
-    // let card = (suit, value) => {
-    //   this.name = value + ' of ' + suit
-    //   this.suit = suit
-    //   this.value = value
-    //
-    // }
+    let card = (suit, value, points) => {
+      this.name = value + ' of ' + suit + points;
+      this.suit = suit;
+      this.value = value;
+      this.points = points;
 
-    for (let s = 0; s < suit.length; s++) {
-      for (let v = 0; v < value.length; v++) {
-        // let points = parseInt(value[v]);
-        //   if (value[v] == "J" || value[v] == "Q" || value == "K")
-        //     points = 10;
-        //   if (value[v] == "A")
-        //     points = 11;
-        let card = (suit, value) => {
-          this.name = value + ' of ' + suit
-          this.suit = suit
-          this.value = value
-          return {name: this.name, suit: this.suit, value: this.value}
-        }
-      this.deck.push(card(suit[s], value[v]))
-        console.log(suit[s]);
-        console.log(value[v]);
+      return {name: this.name, suit: this.suit, value: this.value, points: this.points}
+      // return {name: this.name, suit: this.suit, value: this.value, points: this.points}
+    }
+
+    let value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    let suit = ['♦','♣','♥','♠']
+
+      for (let s = 0; s < suit.length; s++) {
+        for (let v = 0; v < value.length; v++) {
+          let points = parseInt(value[v]);
+          if (value[v] == 'J' || value[v] == "Q" || value[v] == "K")
+          points = 10;
+          if (value[v] == "A")
+          points = 11;
+          this.deck.push(card(suit[s], value[v], points))
+        // console.log(suit[s]);
+        // console.log(value[v]);
       }
+
     }
   }
-  printDeck () {
-    if(this.deck.length == 52) {
+  printDeck() {
+    if(this.deck.length == 0) {
       console.log('the deck has been generated');
     } else {
       for (let c = 0; c < this.deck.length; c++) {
-        // console.log(this.deck[c]);
+        console.log(this.deck[c]);
       }
     }
   }
-}
-deck = new Deck();
-console.log(deck);
-deck.generateDeck();
-// deck.printDeck();
 
+  // deck = new Deck();
+  // console.log(deck);
+  // deck.generateDeck();
+  // deck.printDeck();
+  //for every 104th turn switch the values of two random cards
+    shuffle() {
+    let currentDeck = this.deck.length, mixVal, randDeck
 
+    while(0 != currentDeck){
+      randDeck = Math.floor(Math.random() * currentDeck)
+      //take away one card from the array each time
+      currentDeck -= 1
+      //randomize each value with suit
+      mixVal = this.deck[currentDeck]
+      this.deck[currentDeck] = this.deck[randDeck]
+      this.deck[randDeck] = mixVal
+        }
+      }
+      deal() {
+        let dealtCard = this.deck.shift()
+        this.dealtCards.push(dealtCard)
+        return dealtCard
+      }
+      replace() {
+        this.deck.unshift(this.dealtCard.shift())
+      }
+      clearDeck(){
+        this.deck = []
+      }
+    }
+
+    deck = new Deck()
+
+    deck.generateDeck();
+    deck.shuffle();
+  // console.log(deck.deal());
 
 
 //---------- game logic------------
@@ -95,36 +119,63 @@ function getAccount()
 }
 
 $(()=> {
-  const $start = ()=>{}
+  let botHand = [];
+  let userHand = [];
+
     const $hit = ()=>{
-      $('.card-diamond:nth-child(2)').css('visibility', 'visible');
-      $('.card-spade:nth-child(3)').css('visibility', 'visible');
-      console.log("Hit");
+      console.log(deck.deal());
+      userHand.push(deck.deal());
+      // console.log(userHand[i]);
+      //initializing sum variable
+      let sum = 0;
+      //adding points together
+      for (var i = 0; i < userHand.length; i++) {
+        sum = userHand[i].points + sum;
+      }
+      console.log(sum);
+      if(sum === 21){
+        console.log("player wins");
+      } else if(sum > 21) {
+        console.log("player bust");
+    }
+}
+
+    const $stay = ()=>{
+      console.log(deck.deal());
+      botHand.push(deck.deal());
+    let botSum = 0;
+    for (var i = 0; i < botHand.length; i++) {
+    botSum = botHand[i].points + botSum;
+    }
+    console.log(botSum);
+    if(botSum === 21){
+      console.log("BotWins");
+    } else if (botSum > 21){
+      console.log("Bot Destroyed Player Wins");
+    } else if (botSum <= 19){
+    console.log(deck.deal());
+    botHand.push(deck.deal());
+  } else if (botSum >= $hit('sum')){
+    console.log("Bot beat you, you lost");
+  } else {
+    console.log("Bot Busted");
   }
-  const $stay = ()=>{
-    console.log("Stay");
   }
-  const $bid = ()=>{
+    const $bid = ()=>{
+      console.log(deck.deal());
+      console.log(deck.deal());
+      userHand.push(deck.deal());
+      userHand.push(deck.deal());
+      console.log(deck.deal());
+      console.log(deck.deal());
+      botHand.push(deck.deal());
+      botHand.push(deck.deal());
+      
+      // console.log(userHand[0].points, userHand[1].points);
     $('#bid-box').val('');
-    $('.card-heart:nth-child(1)').css('visibility', 'visible');
-    $('.card-club:nth-child(4)').css('visibility', 'visible');
   }
 
   $("#bid-btn").on('click', $bid);
   $("#stay-btn").on('click', $stay);
   $("#hit-btn").on('click', $hit);
-
-  const $heart = $(".card-heart").append("\u2665");
-  console.log($heart);
-  const $spade = $(".card-spade").append("\u2660");
-  console.log($spade);
-  const $club = $(".card-club").append("\u2663");
-  console.log($club);
-  const $diamond = $(".card-diamond").append("\u2666");
-  console.log($diamond);
-
-  $heart.css('visibility', 'hidden');
-  $club.css('visibility', 'hidden');
-  $diamond.css('visibility', 'hidden');
-  $spade.css('visibility', 'hidden');
 });
