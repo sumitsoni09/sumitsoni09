@@ -58,7 +58,7 @@ h1 {
   margin: auto;
 }
 
-.card-placement {
+.cardPlacement {
   width: 120px;
   height: 190px;
   border: 3px solid;
@@ -123,7 +123,7 @@ h2 {
 #name {
   height: 40px;
   width: 90px;
-  
+
 }
 /* use animation to deal cards through,
 prompt for how to play game,

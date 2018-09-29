@@ -25,22 +25,24 @@
     }
   }
     // user can bid on how much they would like depending on their account and win lose situation
-    const $betMoney = () => {
-      if(sum < botSum){
-        console.log(human.bank - $money())
-        console.log("bank account is " + human.bank);
-        checkWinner();
-    } else if( sum >= botSum ){
-        console.log(human.bank + $money());
-        console.log("bank account is " + human.bank);
-        checkWinner();
-      }
-    }
+    // const $betMoney = () => {
+    //   if(sum < botSum){
+    //     console.log(human.bank - $money())
+    //     console.log("bank account is " + human.bank);
+    //     checkWinner();
+    // } else if( sum >= botSum ){
+    //     console.log(human.bank + $money());
+    //     console.log("bank account is " + human.bank);
+    //     checkWinner();
+    //   }
+    // }
 
-  const $money = () => {
-    console.log("You bid ");
-  }
-
+  // const $money = () => {
+  //   console.log("You bid ");
+  // }
+  // const $end = () => {
+  //   if()
+  // }
 class User {
   constructor(name, bank){
     this.name = name;
@@ -72,15 +74,18 @@ class Deck {
           let points = parseInt(value[v]);
           if (value[v] == 'J' || value[v] == "Q" || value[v] == "K")
           points = 10;
-          if (value[v] == "A")
-          points = 11;
+          if (value[v] == "A"){
+            points = 11
+            }
+          }
+        }
           this.deck.push(card(suit[s], value[v], points))
         // console.log(suit[s]);
         // console.log(value[v]);
       }
 
     }
-  }
+
   printDeck() {
     if(this.deck.length == 0) {
       console.log('the deck has been generated');
@@ -125,34 +130,22 @@ class Deck {
     checkWinner();
 
 $(()=>{
-  let botHand = [];
+    let botHand = [];
 
-  let userHand = [];
+    let userHand = [];
 
-  let sum = 0
+    let sum = 0
 
-  let botSum = 0
+    let botSum = 0
 
-  // const humanHand = ()=>{
-  //   let sum = 0;
-  //   for (var i = 0; i < userHand.length; i++) {
-      // sum = userHand[i].points + sum;
-  //     }
-  // }
-  // const dealerHand = ()=>{
-  //   let botSum = 0
-  //   for (var i = 0; i < botHand.length; i++) {
-  //     botSum = botHand[i].points + botSum
-  //   }
-  // }
-    const $bid = ()=> {
-        // $money();
+      const $bid = ()=> {
+
         userHand.push(deck.deal());
         userHand.push(deck.deal());
 
         for (var i = 0; i < userHand.length; i++) {
           sum = userHand[i].points + sum;
-        }
+      }
 
         console.log("Player has " + sum);
 
@@ -161,25 +154,45 @@ $(()=>{
 
         for (var i = 0; i < botHand.length; i++) {
           botSum = botHand[i].points + botSum;
-        }
+      }
 
         console.log("AI has " + botSum);
 
-        // $money();
+    }
 
+      const $hit = ()=> {
+
+        userHand.push(deck.deal());
+          let sum = 0;
+            for (var i = 0; i < userHand.length; i++) {
+          sum = userHand[i].points + sum;
       }
-      // const $hit = ()=> {
-      //   let sum = 0;
-      //     for (var i = 0; i < userHand.length; i++) {
-      //       sum = userHand[i].points + sum;
-      //   userHand.push(deck.deal());
-      // }
-    $('#bid-btn').on("click", $bid);
-    // $('#hit-btn').on("click", $hit);
-  });
+          console.log("player has " + sum);
+      }
+
+      const $stay = ()=>{
+        end();
+      }
+        $('#bid-btn').on("click", $bid)
+        $('#hit-btn').on("click", $hit);
+});
+    // $('#stay-btn').on("click", $stay);
 
 
 
+
+  // const humanHand = ()=>{
+  //   let sum = 0;
+  //   for (var i = 0; i < userHand.length; i++) {
+  // sum = userHand[i].points + sum;
+  //     }
+  // }
+  // const dealerHand = ()=>{
+  //   let botSum = 0
+  //   for (var i = 0; i < botHand.length; i++) {
+  //     botSum = botHand[i].points + botSum
+  //   }
+  // }
       // $('#bid-box').attr(disabled);
     // console.log(deck.deal());
     // console.log(deck.deal());
@@ -237,98 +250,7 @@ $(()=>{
     //
     // checkWinner();
 
-    class Deck {
-       constructor() {
-         this.deck = [];
-         this.drawnCards = [];
-         this.userHand = [];
-         this.dealerHand = [];
 
-         const suits = ['♦','♣','♥','♠'];
-         const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
-
-       //   const $suits = ['♦','♣','♥','♠']
-       //
-       //   for (let i = 0; i < $suits.length; i++) {
-       //     if ($suits === '♦' || $suits ==='♥') {
-       //     $suits.css('red');
-       //   }
-       // }
-
-           // Ran a for - in loop to iterate over array and
-           // add each value to a suit.
-
-           // Not sure why a for - in loop works in this case
-           // as opposed to a for - of loop.
-
-           // For - in  loop generally works on properties of an object in an arbitrary order.
-           // For - of loops generally used for arrays that have order of access importance.
-
-         }
-           for (let suit in suits) {
-             for (let value in values) {
-               this.deck.push(`${values[value]}${suits[suit]}`);
-                 let points = parseInt(values[value]);
-                   if (values[value] === 'J' || values[value] === 'Q' || values[value] === 'K')
-                     points = 10;
-                   if (values[value] === 'A')
-                     points = 11;
-             }
-           }
-         printDeck () {
-           if(!this.deck.length){
-             console.log('Need new deck');
-           } else {
-             for (let i = 0; i < this.deck.length; i++) {
-                 console.log(this.deck[i]);
-             }
-           }
-         }
-
-         // Used Fisher-Yates shuffle to randomize card selection
-
-         // Assigned this.deck to the variable deck
-         // Assigned m to deck length and also defined i
-
-         // While there are remaining elements to shuffle
-
-         // Choose a random remaining element
-
-         // Swap it with the current element
-
-         shuffle() {
-           const deck = this.deck;
-           let m = deck.length, i;
-
-           while(m){
-             i = Math.floor(Math.random() * m--);
-
-             [deck[m], deck[i]] = [deck[i], deck[m]];
-           }
-
-           return this;
-         }
-
-         // Deal method
-
-         // Iterate through the array
-         // Take a card out of the deck and store into variable
-
-         // Push that card into drawncards array defined at top
-
-         deal () {
-       let m = Array.length;
-  ​
-      for (let i = 0; i <= m; i++) {
-         let drawnCard = this.deck.shift()
-         this.drawnCards.push(drawnCard)
-        }
-        return this.drawnCards
-       }
-     hit () {
-        return this.drawnCards
-     }
-    }
 
 
 //   let botHand = [];
