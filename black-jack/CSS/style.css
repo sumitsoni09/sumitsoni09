@@ -17,6 +17,14 @@ body {
   display: none;
 }
 
+#openModel{
+  font-size: 20px;
+}
+
+#close {
+  font-size: 20px;
+}
+
 #modal-texbox {
   background-color: purple;
   height: 400px;
@@ -107,13 +115,15 @@ button {
 
 
 h2 {
-  font-family: 'New Rocker', cursive;
   font-size: 50px;
+  font-family: 'New Rocker', cursive;
   color: black;
 }
 
-a{
-  color: white;
+#name {
+  height: 40px;
+  width: 90px;
+  
 }
 /* use animation to deal cards through,
 prompt for how to play game,
