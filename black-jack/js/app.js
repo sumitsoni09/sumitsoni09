@@ -25,21 +25,13 @@
     }
   }
     // user can bid on how much they would like depending on their account and win lose situation
-    // const $betMoney = () => {
-    //   if(sum < botSum){
-    //     console.log(human.bank - $money())
-    //     console.log("bank account is " + human.bank);
-    //     checkWinner();
-    // } else if( sum >= botSum ){
-    //     console.log(human.bank + $money());
-    //     console.log("bank account is " + human.bank);
-    //     checkWinner();
-    //   }
-    // }
 
-  // const $money = () => {
-  //   console.log("You bid ");
-  // }
+  const $betMoney = ()=> {
+    console.log($("#bid-box").val());
+  }
+  const $money = () => {
+    console.log("You have bet $ " + ( $("#bid-box").val()));
+  }
   const $end = () =>{
     if (botSum < 17){
     //   for (var i = 0; i < botHand.length; i++) {
@@ -52,22 +44,30 @@
 
     }else if(botSum > 21){
       console.log("AI Busted, Player Won");
+      console.log(human.bank + dealer.bank);
+      console.log("bank account is " + human.bank);
       checkWinner();
 
     }else if(botSum === sum){
-      console.log("Tie Game!");
+      console.log("Tie Game!, No money lost! :)");
       checkWinner();
 
     }else if(sum > botSum){
       console.log("Player Won");
+      console.log(human.bank + dealer.bank);
+      console.log("bank account is " + human.bank);
       checkWinner();
 
     }else if(botSum > sum){
       console.log("AI Won");
+      console.log(human.bank - dealer.bank);
+      console.log("bank account is " + human.bank);
       checkWinner();
 
     }else if(sum > 21){
       console.log("Player busted, AI Won");
+      console.log(human.bank - dealer.bank);
+      console.log("bank account is " + human.bank);
       checkWinner();
     }
   }
@@ -77,7 +77,16 @@ class User {
     this.bank = 100;
   }
 }
+
 const human = new User('Player1');
+
+class ArtI {
+  constructor(bank, name){
+    this.bank = ($("#bid-box").val());
+    this.name = name;
+  }
+}
+const dealer = new ArtI('CPU');
 
 class Deck {
   constructor() {
@@ -196,6 +205,7 @@ class Deck {
 
 $(()=>{
   const $bid = ()=> {
+    $money();
     userHand.push(deck.deal());
     userHand.push(deck.deal());
 
