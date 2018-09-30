@@ -63,7 +63,7 @@
       checkWinner();
 
     }else if(botSum > sum){
-      console.log("AI Win");
+      console.log("AI Won");
       checkWinner();
 
     }else if(sum > 21){
@@ -165,64 +165,88 @@ class Deck {
 
     let botSum = 0
 
-    const $botHit = ()=>{
-      for (var i = 0; i < botHand.length; i++) {
-        botSum = botHand[i].points + botSum;
+  const $sumReset = ()=>{
+      userHand = [];
+      sum = 0;
+      userHand.push();
+      for (var i = 0; i < userHand.length; i++) {
+        sum = userHand[i].points + sum;
+      }
+      console.log("Player now has "+ sum);
+  }
+
+  const $botReset = ()=>{
+    botHand = [];
+    botSum = 0;
+    botHand.push();
+    for (var i = 0; i < botHand.length; i++) {
+      botSum = botHand[i].points + botSum;
     }
-    botHand.push(deck.deal());
-    console.log("AI has " + botSum);
-    $end();
+    console.log("AI now has "+ botSum);
+  }
+
+  const $botHit = ()=>{
+    for (var i = 0; i < botHand.length; i++) {
+      botSum = botHand[i].points + botSum;
+    }
+      botHand.push(deck.deal());
+        console.log("AI has " + botSum);
+          $end();
   }
 
 $(()=>{
   const $bid = ()=> {
+    userHand.push(deck.deal());
+    userHand.push(deck.deal());
 
-        userHand.push(deck.deal());
-        userHand.push(deck.deal());
-
-        for (var i = 0; i < userHand.length; i++) {
-          sum = userHand[i].points + sum;
-      }
+      for (var i = 0; i < userHand.length; i++) {
+        sum = userHand[i].points + sum;
+    }
 
         console.log("Player has " + sum);
 
-        botHand.push(deck.deal());
-        botHand.push(deck.deal());
+    botHand.push(deck.deal());
+    botHand.push(deck.deal());
 
-        for (var i = 0; i < botHand.length; i++) {
+      for (var i = 0; i < botHand.length; i++) {
           botSum = botHand[i].points + botSum;
-      }
+    }
 
       console.log("AI has " + botSum);
 
-    }
+  }
 
   const $hit = ()=> {
 
-        userHand.push(deck.deal());
-          let sum = 0;
-            for (var i = 0; i < userHand.length; i++) {
-          sum = userHand[i].points + sum;
-      }
-      console.log("player has " + sum);
+    userHand.push(deck.deal());
 
-          if(sum > 21){
-            console.log("Player has been Busted");
-            $end();
-          }
+      let sum = 0;
+
+      for (var i = 0; i < userHand.length; i++) {
+        sum = userHand[i].points + sum;
       }
+          console.log("player has " + sum);
+      if(sum > 21){
+          console.log("Player has been Busted, AI Wins");
+      }
+    }
 
   const $stay = ()=>{
-        $end();
-      }
+    $end();
+  }
+
   const $reset = ()=>{
-      console.log("Reset");
-      }
-        $('#bid-btn').on("click", $bid);
-        $('#hit-btn').on("click", $hit);
-        $('#stay-btn').on("click", $stay);
-        $('#reset-btn').on("click", $reset);
+    $sumReset();
+    $botReset();
+  }
+
+  $('#bid-btn').on("click", $bid);
+  $('#hit-btn').on("click", $hit);
+  $('#stay-btn').on("click", $stay);
+  $('#reset-btn').on("click", $reset);
 });
+
+
     // $('#stay-btn').on("click", $stay);
 
 
