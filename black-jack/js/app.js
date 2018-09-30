@@ -14,38 +14,39 @@
 
   const $blackJack = () => {
     alert("Welcome to Blackjack you have $100 to bid, spend it wisely");
+    alert("Remember to Reset after each round and read instructions for help!");
   }
     checkWinner = () => {
-      if(human.bank <= 0) {
+      if(clone <= 0) {
         console.log("player has lost");
         $blackJack();
-    } else if (deck.deal() == null){
+    } else if (deck.deal() === null){
         console.log("player has won");
         $blackJack();
     }
   }
-    // user can bid on how much they would like depending on their account and win lose situation
 
   const $betMoney = ()=> {
-    console.log($("#bid-box").val());
+    console.log(parseInt($("#bid-box").val()));
   }
+
+  // user can bid on how much they would like depending on their account and win lose situation
+let clone = 0;
+
   const $money = () => {
     console.log("You have bet $ " + ( $("#bid-box").val()));
   }
+
   const $end = () =>{
     if (botSum < 17){
-    //   for (var i = 0; i < botHand.length; i++) {
-    //     botSum = botHand[i].points + botSum;
-    // }
-    // botHand.push(deck.deal());
     console.log("AI has " + botSum);
       $botHit();
       checkWinner();
 
-    }else if(botSum > 21){
+    }else if(botSum > 22){
       console.log("AI Busted, Player Won");
-      console.log(human.bank + dealer.bank);
-      console.log("bank account is " + human.bank);
+      clone = (human.bank + parseInt($('#bid-box').val()));
+      console.log("bank account is " + clone);
       checkWinner();
 
     }else if(botSum === sum){
@@ -54,23 +55,24 @@
 
     }else if(sum > botSum){
       console.log("Player Won");
-      console.log(human.bank + dealer.bank);
-      console.log("bank account is " + human.bank);
+      clone = (human.bank + parseInt($('#bid-box').val()));
+      console.log("bank account is " + clone);
       checkWinner();
 
     }else if(botSum > sum){
       console.log("AI Won");
-      console.log(human.bank - dealer.bank);
-      console.log("bank account is " + human.bank);
+      clone = (human.bank - parseInt($('#bid-box').val()));
+      console.log("bank account is " + clone);
       checkWinner();
 
-    }else if(sum > 21){
+    }else if(sum > 22){
       console.log("Player busted, AI Won");
-      console.log(human.bank - dealer.bank);
-      console.log("bank account is " + human.bank);
+      clone = (human.bank - parseInt($('#bid-box').val()));
+      console.log("bank account is " + clone);
       checkWinner();
     }
   }
+
 class User {
   constructor(name, bank){
     this.name = name;
@@ -80,13 +82,6 @@ class User {
 
 const human = new User('Player1');
 
-class ArtI {
-  constructor(bank, name){
-    this.bank = ($("#bid-box").val());
-    this.name = name;
-  }
-}
-const dealer = new ArtI('CPU');
 
 class Deck {
   constructor() {
@@ -182,6 +177,7 @@ class Deck {
         sum = userHand[i].points + sum;
       }
       console.log("Player now has "+ sum);
+      console.log("bank account is " + clone);
   }
 
   const $botReset = ()=>{
@@ -248,6 +244,7 @@ $(()=>{
   const $reset = ()=>{
     $sumReset();
     $botReset();
+    $('#bid-box').val('');
   }
 
   $('#bid-btn').on("click", $bid);
@@ -430,3 +427,61 @@ $(()=>{
 // $(".card-spade").append("\u2660"),
 // $(".card-club").append("\u2663"),
 // $(".card-diamond").append("\u2666")
+//   for (var i = 0; i < botHand.length; i++) {
+//     botSum = botHand[i].points + botSum;
+// }
+// botHand.push(deck.deal());
+
+
+
+
+
+
+
+// console.log(human.bank + parseInt($('#bid-box').val()));
+
+
+
+
+
+
+
+
+
+
+
+// console.log(human.bank + parseInt($('#bid-box').val()));
+
+
+
+
+
+
+// console.log(human.bank - parseInt($('#bid-box').val()));
+
+
+
+
+
+
+// console.log(human.bank - parseInt($('#bid-box').val()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class ArtI {
+//   constructor(bank, name){
+//     this.bank = $("#bid-box").text();
+//     this.name = name;
+//   }
+// }
+// const dealer = new ArtI('CPU');
