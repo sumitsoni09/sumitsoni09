@@ -42,6 +42,11 @@
   // }
   const $end = () =>{
     if (botSum < 17){
+    //   for (var i = 0; i < botHand.length; i++) {
+    //     botSum = botHand[i].points + botSum;
+    // }
+    // botHand.push(deck.deal());
+    console.log("AI has " + botSum);
       $botHit();
       checkWinner();
 
@@ -161,7 +166,6 @@ class Deck {
     let botSum = 0
 
     const $botHit = ()=>{
-      let botSum = 0
       for (var i = 0; i < botHand.length; i++) {
         botSum = botHand[i].points + botSum;
     }
@@ -171,8 +175,7 @@ class Deck {
   }
 
 $(()=>{
-
-      const $bid = ()=> {
+  const $bid = ()=> {
 
         userHand.push(deck.deal());
         userHand.push(deck.deal());
@@ -194,7 +197,7 @@ $(()=>{
 
     }
 
-      const $hit = ()=> {
+  const $hit = ()=> {
 
         userHand.push(deck.deal());
           let sum = 0;
@@ -209,12 +212,16 @@ $(()=>{
           }
       }
 
-      const $stay = ()=>{
+  const $stay = ()=>{
         $end();
+      }
+  const $reset = ()=>{
+      console.log("Reset");
       }
         $('#bid-btn').on("click", $bid);
         $('#hit-btn').on("click", $hit);
         $('#stay-btn').on("click", $stay);
+        $('#reset-btn').on("click", $reset);
 });
     // $('#stay-btn').on("click", $stay);
 
