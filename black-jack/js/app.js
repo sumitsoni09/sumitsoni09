@@ -40,9 +40,32 @@
   // const $money = () => {
   //   console.log("You bid ");
   // }
-  // const $end = () => {
-  //   if()
-  // }
+  const $end = () =>{
+    if (botSum < 17){
+      $botHit();
+      checkWinner();
+
+    }else if(botSum > 21){
+      console.log("AI Busted, Player Won");
+      checkWinner();
+
+    }else if(botSum === sum){
+      console.log("Tie Game!");
+      checkWinner();
+
+    }else if(sum > botSum){
+      console.log("Player Won");
+      checkWinner();
+
+    }else if(botSum > sum){
+      console.log("AI Win");
+      checkWinner();
+
+    }else if(sum > 21){
+      console.log("Player busted, AI Won");
+      checkWinner();
+    }
+  }
 class User {
   constructor(name, bank){
     this.name = name;
@@ -77,14 +100,14 @@ class Deck {
           if (value[v] == "A"){
             points = 11
             }
+            this.deck.push(card(suit[s], value[v], points))
           }
         }
-          this.deck.push(card(suit[s], value[v], points))
         // console.log(suit[s]);
         // console.log(value[v]);
       }
 
-    }
+
 
   printDeck() {
     if(this.deck.length == 0) {
@@ -129,7 +152,6 @@ class Deck {
     $blackJack();
     checkWinner();
 
-$(()=>{
     let botHand = [];
 
     let userHand = [];
@@ -137,6 +159,18 @@ $(()=>{
     let sum = 0
 
     let botSum = 0
+
+    const $botHit = ()=>{
+      let botSum = 0
+      for (var i = 0; i < botHand.length; i++) {
+        botSum = botHand[i].points + botSum;
+    }
+    botHand.push(deck.deal());
+    console.log("AI has " + botSum);
+    $end();
+  }
+
+$(()=>{
 
       const $bid = ()=> {
 
@@ -156,7 +190,7 @@ $(()=>{
           botSum = botHand[i].points + botSum;
       }
 
-        console.log("AI has " + botSum);
+      console.log("AI has " + botSum);
 
     }
 
@@ -167,14 +201,20 @@ $(()=>{
             for (var i = 0; i < userHand.length; i++) {
           sum = userHand[i].points + sum;
       }
-          console.log("player has " + sum);
+      console.log("player has " + sum);
+
+          if(sum > 21){
+            console.log("Player has been Busted");
+            $end();
+          }
       }
 
       const $stay = ()=>{
-        end();
+        $end();
       }
-        $('#bid-btn').on("click", $bid)
+        $('#bid-btn').on("click", $bid);
         $('#hit-btn').on("click", $hit);
+        $('#stay-btn').on("click", $stay);
 });
     // $('#stay-btn').on("click", $stay);
 
